@@ -17,9 +17,9 @@ describe 'As a visitor when I visit the show page' do
     FlightPassenger.create!(flight_id: @flight_1.id, passenger_id: @passenger_2.id)
     FlightPassenger.create!(flight_id: @flight_2.id, passenger_id: @passenger_1.id)
 
-    visit airline.path(@airline_1)
+    visit airline_path(@airline_1)
   end
   it 'Shows unique list of passengers that are on flights from this airline' do
-    expect(page).to have_content(@airline_1.passengers)
+    expect(page).to have_content(@airline_1.list_passengers)
   end
 end

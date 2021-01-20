@@ -22,7 +22,7 @@ RSpec.describe Airline, type: :model do
       FlightPassenger.create!(flight_id: @flight_2.id, passenger_id: @passenger_1.id)
     end
     it 'lists unique passengers' do
-      expect(@airline_1.passengers).to eq([@passenger_1.name, @passenger_2.name])
+      expect(@airline_1.list_passengers).to eq([@passenger_1.name, @passenger_2.name])
     end
   end
 end
