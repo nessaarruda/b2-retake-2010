@@ -33,9 +33,13 @@ describe 'As a visitor when I visit the index page' do
     end
   end
   it "Has link to remove passenger from fligth" do
+    expect(@flight_1.passengers.count).to eq(2)
     first("#passenger-#{@passenger_1.id}").click_link("Remove Passenger")
-    
+    expect(@flight_1.passengers.count).to eq(1)
     expect(current_path).to eq(flights_path)
-    expect(page).to_not have_content(@passenger_1.name)
+  end
+  xit 'list flights by number of passenger' do
+    expect(@flight_1).to appear_before(@flight_2)
+    expect(@flight_2).to appear_before(@flight_3)
   end
 end
