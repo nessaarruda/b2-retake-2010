@@ -20,11 +20,17 @@ describe 'As a visitor when I visit the index page' do
     visit flights_path
   end
   it 'Shows a list of all flight numbers and names of passengers for each flight' do
-    expect(page).to have_content(@flight_1.number)
-    expect(page).to have_content(@flight_2.number)
-    expect(page).to have_content(@flight_3.number)
-    expect(page).to have_content(@passenger_1.name)
-    expect(page).to have_content(@passenger_2.name)
-    expect(page).to_not have_content(@passenger_3.name)
+    within("#flight-#{@flight_1.id}") do
+      expect(page).to have_content(@passenger_1.name)
+    end
+    within("#flight-#{@flight_2.id}") do
+      expect(page).to have_content(@passenger_1.name)
+      expect(page).to_not have_content(@passenger_2.name)
+    end
+    within("#flight-#{@flight_3.id}") do
+      expect(page).to_not have_content(@passenger_1.name)
+      expect(page).to_not have_content(@passenger_2.name)
+    end
+
   end
 end
