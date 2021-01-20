@@ -31,6 +31,11 @@ describe 'As a visitor when I visit the index page' do
       expect(page).to_not have_content(@passenger_1.name)
       expect(page).to_not have_content(@passenger_2.name)
     end
-
+  end
+  it "Has link to remove passenger from fligth" do
+    first("#passenger-#{@passenger_1.id}").click_link("Remove Passenger")
+    
+    expect(current_path).to eq(flights_path)
+    expect(page).to_not have_content(@passenger_1.name)
   end
 end
